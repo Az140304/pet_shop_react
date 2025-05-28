@@ -1,0 +1,34 @@
+runtime: nodejs20
+service: fe-petshop
+instance_class: F1
+
+handlers:
+  - url: /(.*\.(js|mjs))$
+    static_files: dist/\1
+    upload: dist/.*\.(js|mjs)$
+    mime_type: application/javascript
+
+  - url: /(.*\.css)$
+    static_files: dist/\1
+    upload: dist/.*\.css$
+    mime_type: text/css
+
+  - url: /(.*\.(png|jpg|jpeg|gif|ico|svg|webp))$
+    static_files: dist/\1
+    upload: dist/.*\.(png|jpg|jpeg|gif|ico|svg|webp)$
+
+  - url: /(.*\.(woff|woff2|ttf|eot))$
+    static_files: dist/\1
+    upload: dist/.*\.(woff|woff2|ttf|eot)$
+
+  - url: /(.*\.json)$
+    static_files: dist/\1
+    upload: dist/.*\.json$
+    mime_type: application/json
+
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
+    mime_type: text/html
+
+default_expiration: "1h"
